@@ -10,11 +10,11 @@ collision_mask = 16
 script = ExtResource("1_3uyv8")
 
 [node name="PlayerSprite" type="Sprite2D" parent="."]
-position = Vector2(0, -16)
+position = Vector2(0, -32)
 texture = ExtResource("2_lu8i8")
 
 [node name="PlayerCollision" parent="." instance=ExtResource("3_tekja")]
-position = Vector2(0, -16)
+position = Vector2(0, -29)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
@@ -22,4 +22,4 @@ position = Vector2(0, -16)
 script = ExtResource("4_5c2io")
 
 [node name="PlayerCollision" parent="Detector" instance=ExtResource("3_tekja")]
-position = Vector2(0, -16)
+position = Vector2(0, -29)

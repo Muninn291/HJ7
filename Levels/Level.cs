@@ -5,13 +5,14 @@ using System.Linq;
 public partial class Level : Control
 {
   [Export]
-  public ulong grains = 60000;
+  public long grains = 60000;
   public int reverseGrains = -1;
   public RichTextLabel gCount;
   public RichTextLabel rgCount;
   public ProgressBar grainCount;
   public ulong prevTime = 0;
   public ulong newTime = 0;
+  public bool timeout = false;
 
   public override void _Ready()
   {
@@ -33,10 +34,13 @@ public partial class Level : Control
   {
     base._Process(delta);
     newTime = Time.GetTicksMsec();
-    grains -= newTime - prevTime;
-    grainCount.Value = grains / 1000f;
+    if (grains > 0 && !timeout)
+    {
+      grains = Math.Max(grains - (long)(newTime - prevTime), 0);
+      grainCount.Value = grains / 1000f;
+      gCount.Text = $"{Math.Ceiling(grainCount.Value)}";
+    }
     prevTime = newTime;
-    gCount.Text = $"{Math.Ceiling(grainCount.Value)}";
   }
 
 

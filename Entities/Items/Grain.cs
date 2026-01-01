@@ -3,7 +3,7 @@ using System;
 
 public partial class Grain : Item
 {
-  public static readonly ulong grainGain = 3000;
+  public static readonly long grainGain = 3000;
 
   public override void OnPickUp()
   {

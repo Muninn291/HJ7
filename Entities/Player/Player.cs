@@ -5,18 +5,38 @@ public partial class Player : MovingEntity
 {
   public override void _Input(InputEvent @event)
   {
-    if (@event.IsActionPressed("jump") && moveState == MoveState.GROUNDED)
+    if (@event.IsActionPressed("rightClick"))
     {
-      moveState = MoveState.JUMPING;
+      level.timeout = true;
     }
-    else if (@event.IsActionReleased("jump") && moveState == MoveState.JUMPING)
+    else if (@event.IsActionReleased("rightClick"))
     {
-      moveState = MoveState.AIRBORNE;
+      level.timeout = false;
+    }
+    else if (@event.IsActionPressed("dash") && dashReady)
+    {
+      dashTime = 0f;
+      dashReady = false;
+      moveState = MoveState.DASHING;
+    }
+    else if (moveState != MoveState.DASHING)
+    {
+      if (@event.IsActionPressed("jump") && moveState == MoveState.GROUNDED)
+      {
+        moveState = MoveState.JUMPING;
+      }
+      else if (@event.IsActionReleased("jump") && moveState == MoveState.JUMPING)
+      {
+        moveState = MoveState.AIRBORNE;
+      }
     }
   }
   public override void _PhysicsProcess(double delta)
   {
-    direction = Input.GetVector("left", "right", "up", "down").X;
+    if (moveState != MoveState.DASHING)
+    {
+      direction = Input.GetVector("left", "right", "up", "down").X;
+    }
     base._PhysicsProcess(delta);
   }
 }
