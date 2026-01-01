@@ -29,6 +29,8 @@ public partial class MovingEntity : Entity
   public float jumpTime = 0f;
   public float dashTime = 0f;
   public bool dashReady = true;
+  public bool attacking = false;
+  public float ATTACK_COOLDOWN = 2f;
 
   public override void _Ready()
   {

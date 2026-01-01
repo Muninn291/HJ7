@@ -3,5 +3,6 @@ public enum MoveState
   GROUNDED,
   AIRBORNE,
   JUMPING,
-  DASHING
+  DASHING,
+  SUPER_DASHING
 }

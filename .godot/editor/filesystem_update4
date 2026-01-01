@@ -14,3 +14,4 @@ res://Levels/Level.cs
 res://Entities/Items/reverseGrain.tscn
 res://Entities/Items/ReverseGrain.cs
 res://Entities/Items/grain.tscn
+res://Entities/Player/AimPointer.cs
