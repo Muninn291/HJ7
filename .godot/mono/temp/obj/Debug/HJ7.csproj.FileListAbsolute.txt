@@ -15,3 +15,4 @@ C:\Users\berke\Documents\hj7\.godot\mono\temp\obj\Debug\refint\HJ7.dll
 C:\Users\berke\Documents\hj7\.godot\mono\temp\obj\Debug\HJ7.pdb
 C:\Users\berke\Documents\hj7\.godot\mono\temp\obj\Debug\HJ7.genruntimeconfig.cache
 C:\Users\berke\Documents\hj7\.godot\mono\temp\obj\Debug\ref\HJ7.dll
+C:\Users\berke\Documents\hj7\.godot\mono\temp\obj\Debug\HJ7.sourcelink.json
