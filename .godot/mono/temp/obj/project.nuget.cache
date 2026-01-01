@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "VKVtNg4d3xM=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\berke\\Documents\\hj7\\HJ7.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\berke\\.nuget\\packages\\godot.sourcegenerators\\4.4.1\\godot.sourcegenerators.4.4.1.nupkg.sha512",
+    "C:\\Users\\berke\\.nuget\\packages\\godotsharp\\4.4.1\\godotsharp.4.4.1.nupkg.sha512",
+    "C:\\Users\\berke\\.nuget\\packages\\godotsharpeditor\\4.4.1\\godotsharpeditor.4.4.1.nupkg.sha512"
+  ],
+  "logs": []
+}

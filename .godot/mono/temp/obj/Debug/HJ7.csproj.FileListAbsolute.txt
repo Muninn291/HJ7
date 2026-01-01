@@ -1,0 +1,17 @@
+C:\Users\berke\Documents\hj7\.godot\mono\temp\obj\Debug\HJ7.csproj.AssemblyReference.cache
+C:\Users\berke\Documents\hj7\.godot\mono\temp\obj\Debug\HJ7.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\berke\Documents\hj7\.godot\mono\temp\obj\Debug\HJ7.AssemblyInfoInputs.cache
+C:\Users\berke\Documents\hj7\.godot\mono\temp\obj\Debug\HJ7.AssemblyInfo.cs
+C:\Users\berke\Documents\hj7\.godot\mono\temp\obj\Debug\HJ7.csproj.CoreCompileInputs.cache
+C:\Users\berke\Documents\hj7\.godot\mono\temp\bin\Debug\HJ7.deps.json
+C:\Users\berke\Documents\hj7\.godot\mono\temp\bin\Debug\HJ7.runtimeconfig.json
+C:\Users\berke\Documents\hj7\.godot\mono\temp\bin\Debug\HJ7.dll
+C:\Users\berke\Documents\hj7\.godot\mono\temp\bin\Debug\HJ7.pdb
+C:\Users\berke\Documents\hj7\.godot\mono\temp\bin\Debug\GodotSharp.dll
+C:\Users\berke\Documents\hj7\.godot\mono\temp\bin\Debug\GodotSharpEditor.dll
+C:\Users\berke\Documents\hj7\.godot\mono\temp\obj\Debug\HJ7.csproj.Up2Date
+C:\Users\berke\Documents\hj7\.godot\mono\temp\obj\Debug\HJ7.dll
+C:\Users\berke\Documents\hj7\.godot\mono\temp\obj\Debug\refint\HJ7.dll
+C:\Users\berke\Documents\hj7\.godot\mono\temp\obj\Debug\HJ7.pdb
+C:\Users\berke\Documents\hj7\.godot\mono\temp\obj\Debug\HJ7.genruntimeconfig.cache
+C:\Users\berke\Documents\hj7\.godot\mono\temp\obj\Debug\ref\HJ7.dll

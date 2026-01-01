@@ -1,0 +1,4 @@
+res://Entities/Entity.cs
+res://Entities/Player/Player.cs
+res://Levels/main_forest.tscn
+res://Levels/terrain.tscn

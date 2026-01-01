@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://puk31w112b4r"]
+
+[ext_resource type="PackedScene" uid="uid://gn34kw1l4flk" path="res://Levels/terrain.tscn" id="1_w2yg5"]
+[ext_resource type="Script" uid="uid://bn6eukj5ci0ux" path="res://Entities/Player/Player.cs" id="2_wp7yq"]
+[ext_resource type="Texture2D" uid="uid://qdgt6qkrmyr" path="res://Entities/Player/Sprites/ImmerRect.png" id="3_vfrs1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1c1ed"]
+size = Vector2(8, 20)
+
+[node name="Main_Forest" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="Terrain" parent="." instance=ExtResource("1_w2yg5")]
+
+[node name="Player" type="CharacterBody2D" parent="."]
+position = Vector2(0, -475)
+collision_mask = 16
+script = ExtResource("2_wp7yq")
+
+[node name="PlayerSprite" type="Sprite2D" parent="Player"]
+position = Vector2(0, -16)
+texture = ExtResource("3_vfrs1")
+
+[node name="PlayerCollision" type="CollisionShape2D" parent="Player"]
+position = Vector2(0, -10)
+shape = SubResource("RectangleShape2D_1c1ed")
+
+[node name="Camera2D" type="Camera2D" parent="Player"]

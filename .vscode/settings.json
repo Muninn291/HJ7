@@ -1,0 +1,14 @@
+{
+    "godotTools.editorPath.godot4": "c:\\Users\\berke\\Documents\\Godot_v4.3-stable_mono_win64\\Godot_v4.3-stable_mono_win64.exe",
+    "search.exclude": {
+        "\\Godot.SourceGenerators\\**": true
+    },
+    "csharp.referencesCodeLens.filteredSymbols": [
+        "\\Godot.SourceGenerators\\**"
+    ],
+    "editor.acceptSuggestionOnCommitCharacter": false,
+    "files.exclude": {
+        "**/*.uid": true,
+        "**/*.generated.cs": true
+    }
+}
