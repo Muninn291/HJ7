@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://5h0k0v7g0sro"]
+
+[ext_resource type="Script" uid="uid://ccpsvspwthjiq" path="res://Entities/Items/Grain.cs" id="1_4oj2v"]
+[ext_resource type="Texture2D" uid="uid://kuqk53fkwbwi" path="res://Entities/Items/grain.png" id="2_gorlk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vfrs1"]
+size = Vector2(10, 10)
+
+[node name="Grain" type="CharacterBody2D"]
+script = ExtResource("1_4oj2v")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_vfrs1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_gorlk")

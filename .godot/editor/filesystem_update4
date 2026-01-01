@@ -2,3 +2,15 @@ res://Entities/Entity.cs
 res://Entities/Player/Player.cs
 res://Levels/main_forest.tscn
 res://Levels/terrain.tscn
+res://Entities/Player/PlayerCollision.cs
+res://Entities/Player/player_collision.tscn
+res://Entities/Player/Detector.cs
+res://Entities/Player/player.tscn
+res://Entities/Items/Grain.cs
+res://Entities/Items/Item.cs
+res://Entities/MovingEntity.cs
+res://Entities/Touchable.cs
+res://Levels/Level.cs
+res://Entities/Items/reverseGrain.tscn
+res://Entities/Items/ReverseGrain.cs
+res://Entities/Items/grain.tscn

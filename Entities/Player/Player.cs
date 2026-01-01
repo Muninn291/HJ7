@@ -1,8 +1,7 @@
 using Godot;
 using System;
 
-
-public partial class Player : Entity
+public partial class Player : MovingEntity
 {
   public override void _Input(InputEvent @event)
   {
