@@ -15,3 +15,7 @@ res://Entities/Items/reverseGrain.tscn
 res://Entities/Items/ReverseGrain.cs
 res://Entities/Items/grain.tscn
 res://Entities/Player/AimPointer.cs
+res://Entities/Player/Thrust.cs
+res://Entities/Player/ThrustAnimation.cs
+res://Entities/Player/thrust.tscn
+res://Entities/Player/Lance.cs

@@ -20,7 +20,7 @@ public partial class MovingEntity : Entity
   private float MAX_JUMP_TIME = 0.25f;
   private float MAX_DASH_TIME = 0.03f;
   private float DASH_DURATION = 0.15f;
-  private float DASH_SPEED = 1700f;
+  private float DASH_SPEED = 1500f;
   private float DASH_DECEL = 5500f;
   public float DASH_COOLDOWN = 0.55f;
   public MoveState moveState = MoveState.AIRBORNE;
@@ -29,6 +29,7 @@ public partial class MovingEntity : Entity
   public float jumpTime = 0f;
   public float dashTime = 0f;
   public bool dashReady = true;
+  public bool airDash = false;
   public bool attacking = false;
   public float ATTACK_COOLDOWN = 2f;
 
@@ -110,7 +111,8 @@ public partial class MovingEntity : Entity
     }
     Velocity = new(xSpeed, ySpeed);
 
-    dashReady = dashReady || (moveState == GROUNDED && dashTime >= DASH_COOLDOWN);
+    // dashReady = dashReady || (moveState == GROUNDED && dashTime >= DASH_COOLDOWN);
+    dashReady = dashReady || (!airDash && dashTime >= DASH_COOLDOWN);
 
     MoveAndSlide();
     if (moveState != DASHING)
@@ -119,9 +121,11 @@ public partial class MovingEntity : Entity
       {
         if (IsOnFloor())
         {
-          if (moveState == AIRBORNE)
+          // if (moveState == AIRBORNE)
+          if (airDash)
           {
             dashReady = true;
+            airDash = false;
           }
           moveState = GROUNDED;
         }

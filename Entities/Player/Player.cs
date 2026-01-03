@@ -3,6 +3,8 @@ using System;
 
 public partial class Player : MovingEntity
 {
+  public PackedScene thrust = GD.Load<PackedScene>("res://Entities/Player/thrust.tscn");
+
   public override void _Input(InputEvent @event)
   {
     if (@event.IsActionPressed("rightClick"))
@@ -13,10 +15,19 @@ public partial class Player : MovingEntity
     {
       level.timeout = false;
     }
+    else if (@event.IsActionPressed("attack"))
+    {
+      Node2D thrustInstance = (Node2D)thrust.Instantiate();
+      AddChild(thrustInstance);
+    }
     else if (@event.IsActionPressed("dash") && dashReady)
     {
       dashTime = 0f;
       dashReady = false;
+      if (moveState == MoveState.AIRBORNE)
+      {
+        airDash = true;
+      }
       moveState = MoveState.DASHING;
     }
     else if (moveState != MoveState.DASHING)
@@ -35,7 +46,7 @@ public partial class Player : MovingEntity
   {
     if (moveState != MoveState.DASHING)
     {
-      direction = Input.GetVector("left", "right", "up", "down").X;
+      direction = Math.Sign(Input.GetVector("left", "right", "up", "down").X);
     }
     base._PhysicsProcess(delta);
   }
