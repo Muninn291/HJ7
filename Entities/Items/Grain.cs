@@ -9,5 +9,6 @@ public partial class Grain : Item
   {
 	GD.Print("Picked up a grain!");
 	level.grains += grainGain;
+	level.UpdateGCount();
   }
 }

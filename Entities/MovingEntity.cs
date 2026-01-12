@@ -31,7 +31,7 @@ public partial class MovingEntity : Entity
   public float dashTime = 0f;
   public bool dashReady = true;
   public bool airDash = false;
-  public bool attacking = false;
+  public bool attackCoolingDown = false;
   public float ATTACK_COOLDOWN = 0.5f;
   public float attackTime = 0f;
   public Vector2 superDashTarget = Vector2.Zero;
@@ -51,7 +51,7 @@ public partial class MovingEntity : Entity
 
   public override void _PhysicsProcess(double delta)
   {
-    if (level.timeout && moveState != SUPER_DASHING)
+    if (level.Timeout && moveState != SUPER_DASHING)
     {
       return;
     }
@@ -76,12 +76,12 @@ public partial class MovingEntity : Entity
       xSpeed = Math.Max(Math.Abs(xSpeed) - MOVE_DECEL * (float)delta, 0f) * xSpeed.SignNotZero();
     }
 
-    if (attacking)
+    if (attackCoolingDown)
     {
       attackTime += (float)delta;
-      if (attackTime > ATTACK_COOLDOWN)
+      if (attackTime >= ATTACK_COOLDOWN)
       {
-        attacking = false;
+        attackCoolingDown = false;
       }
     }
 
@@ -148,10 +148,6 @@ public partial class MovingEntity : Entity
       {
         EndSuperdash();
       }
-      // else
-      // {
-      //   GD.Print(GlobalPosition.DistanceTo(superDashTarget));
-      // }
     }
     else
     {

@@ -9,26 +9,33 @@ public partial class Player : MovingEntity
   {
     if (@event.IsActionPressed("rightClick"))
     {
-      level.timeout = true;
+      if (level.grains > 0)
+      {
+        level.Timeout = true;
+      }
     }
     else if (@event.IsActionReleased("rightClick"))
     {
-      level.timeout = false;
+      level.Timeout = false;
     }
-    else if (@event.IsActionPressed("attack") && !attacking)
+    else if (@event.IsActionPressed("attack") && !attackCoolingDown)
     {
       Node2D thrustInstance = (Node2D)thrust.Instantiate();
       AddChild(thrustInstance);
-      attacking = true;
+      attackCoolingDown = true;
       attackTime = 0f;
     }
     else if (@event.IsActionPressed("dash"))
     {
-      if (level.timeout)
+      if (level.Timeout)
       {
-        superDashTarget = GetGlobalMousePosition();
-        superDashOrigin = GlobalPosition;
-        moveState = MoveState.SUPER_DASHING;
+        if (level.grains > 1000)
+        {
+          superDashTarget = GetGlobalMousePosition();
+          superDashOrigin = GlobalPosition;
+          moveState = MoveState.SUPER_DASHING;
+          level.DecreaseGrains(1000);
+        }
       }
       else if (dashReady)
       {
@@ -57,7 +64,7 @@ public partial class Player : MovingEntity
   {
     if (moveState == MoveState.SUPER_DASHING)
     {
-      
+
     }
     else if (moveState != MoveState.DASHING)
     {

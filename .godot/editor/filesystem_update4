@@ -19,3 +19,5 @@ res://Entities/Player/Thrust.cs
 res://Entities/Player/ThrustAnimation.cs
 res://Entities/Player/thrust.tscn
 res://Entities/Player/Lance.cs
+res://Levels/main_test.tscn
+res://Levels/timestop.gdshader

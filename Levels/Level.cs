@@ -12,7 +12,17 @@ public partial class Level : Control
   public ProgressBar grainCount;
   public ulong prevTime = 0;
   public ulong newTime = 0;
-  public bool timeout = false;
+  private bool timeout;
+  public bool Timeout
+  {
+    get => timeout;
+    set
+    {
+      timeout = value;
+      timeStopFilter.Visible = value;
+    }
+  }
+  public ColorRect timeStopFilter;
 
   public override void _Ready()
   {
@@ -23,7 +33,12 @@ public partial class Level : Control
     grainCount.Value = grainCount.MaxValue;
     gCount = (RichTextLabel)FindChild("UI").FindChild("ProgressBar").FindChild("GCounter").FindChild("GCount");
     rgCount = (RichTextLabel)FindChild("UI").FindChild("RGCounter").FindChild("RGCount");
+    timeStopFilter = (ColorRect)FindChild("UI").FindChild("TimeStopFilter");
     foreach (Entity entity in GetChildren().Where(c => c is Entity).Cast<Entity>())
+    {
+      entity.level = this;
+    }
+    foreach (Entity entity in FindChild("AlwaysColor").GetChildren().Where(c => c is Entity).Cast<Entity>())
     {
       entity.level = this;
     }
@@ -34,23 +49,39 @@ public partial class Level : Control
   {
     base._Process(delta);
     newTime = Time.GetTicksMsec();
-    if (grains > 0 && !timeout)
+    if (grains > 0 && !Timeout)
     {
-      grains = Math.Max(grains - (long)(newTime - prevTime), 0);
+      DecreaseGrains((long)(newTime - prevTime));
     }
-    UpdateGCount();
     prevTime = newTime;
+  }
+
+  public void DecreaseGrains(long difference)
+  {
+    grains = Math.Max(grains - difference, 0);
+    UpdateGCount();
+    if (grains == 0 && Timeout)
+    {
+      Timeout = false;
+    }
   }
 
   public void UpdateGCount()
   {
     grainCount.Value = grains / 1000f;
-    gCount.Text = $"{Math.Ceiling(grainCount.Value)}";
+    if (grainCount.Value < 5 && grainCount.Value > 0)
+    {
+      gCount.Text = $"{Math.Round(grainCount.Value, 1, MidpointRounding.ToZero):N1}";
+    }
+    else
+    {
+      gCount.Text = $"{Math.Floor(grainCount.Value)}";
+    }
   }
 
   public void UpdateRGCount()
   {
-    reverseGrains = GetChildren().Count(c => c is ReverseGrain rg && !rg.collected);
+    reverseGrains = FindChild("AlwaysColor").GetChildren().Count(c => c is ReverseGrain rg && !rg.collected);
     rgCount.Text = $"{reverseGrains}";
   }
 }
