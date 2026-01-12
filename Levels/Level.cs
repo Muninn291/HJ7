@@ -37,12 +37,16 @@ public partial class Level : Control
     if (grains > 0 && !timeout)
     {
       grains = Math.Max(grains - (long)(newTime - prevTime), 0);
-      grainCount.Value = grains / 1000f;
-      gCount.Text = $"{Math.Ceiling(grainCount.Value)}";
     }
+    UpdateGCount();
     prevTime = newTime;
   }
 
+  public void UpdateGCount()
+  {
+    grainCount.Value = grains / 1000f;
+    gCount.Text = $"{Math.Ceiling(grainCount.Value)}";
+  }
 
   public void UpdateRGCount()
   {

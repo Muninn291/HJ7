@@ -60,6 +60,18 @@ position = Vector2(-415, -56)
 [node name="ReverseGrain4" parent="." instance=ExtResource("5_iv07e")]
 position = Vector2(542, -279)
 
+[node name="ReverseGrain5" parent="." instance=ExtResource("5_iv07e")]
+position = Vector2(1396, -75)
+
+[node name="ReverseGrain6" parent="." instance=ExtResource("5_iv07e")]
+position = Vector2(1507, -378)
+
+[node name="Grain6" parent="." instance=ExtResource("3_w2yg5")]
+position = Vector2(1192, -450)
+
+[node name="Grain7" parent="." instance=ExtResource("3_w2yg5")]
+position = Vector2(1025, -330)
+
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="ProgressBar" type="ProgressBar" parent="UI"]
@@ -119,15 +131,3 @@ autowrap_mode = 0
 shortcut_keys_enabled = false
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="ReverseGrain5" parent="." instance=ExtResource("5_iv07e")]
-position = Vector2(1396, -75)
-
-[node name="ReverseGrain6" parent="." instance=ExtResource("5_iv07e")]
-position = Vector2(1507, -378)
-
-[node name="Grain6" parent="." instance=ExtResource("3_w2yg5")]
-position = Vector2(1192, -450)
-
-[node name="Grain7" parent="." instance=ExtResource("3_w2yg5")]
-position = Vector2(1025, -330)

@@ -3,7 +3,7 @@ using System;
 
 public partial class Player : MovingEntity
 {
-  public PackedScene thrust = GD.Load<PackedScene>("res://Entities/Player/thrust.tscn");
+  public static readonly PackedScene thrust = GD.Load<PackedScene>("res://Entities/Player/thrust.tscn");
 
   public override void _Input(InputEvent @event)
   {
@@ -15,20 +15,31 @@ public partial class Player : MovingEntity
     {
       level.timeout = false;
     }
-    else if (@event.IsActionPressed("attack"))
+    else if (@event.IsActionPressed("attack") && !attacking)
     {
       Node2D thrustInstance = (Node2D)thrust.Instantiate();
       AddChild(thrustInstance);
+      attacking = true;
+      attackTime = 0f;
     }
-    else if (@event.IsActionPressed("dash") && dashReady)
+    else if (@event.IsActionPressed("dash"))
     {
-      dashTime = 0f;
-      dashReady = false;
-      if (moveState == MoveState.AIRBORNE)
+      if (level.timeout)
       {
-        airDash = true;
+        superDashTarget = GetGlobalMousePosition();
+        superDashOrigin = GlobalPosition;
+        moveState = MoveState.SUPER_DASHING;
       }
-      moveState = MoveState.DASHING;
+      else if (dashReady)
+      {
+        dashTime = 0f;
+        dashReady = false;
+        if (moveState == MoveState.AIRBORNE)
+        {
+          airDash = true;
+        }
+        moveState = MoveState.DASHING;
+      }
     }
     else if (moveState != MoveState.DASHING)
     {
@@ -44,7 +55,11 @@ public partial class Player : MovingEntity
   }
   public override void _PhysicsProcess(double delta)
   {
-    if (moveState != MoveState.DASHING)
+    if (moveState == MoveState.SUPER_DASHING)
+    {
+      
+    }
+    else if (moveState != MoveState.DASHING)
     {
       direction = Math.Sign(Input.GetVector("left", "right", "up", "down").X);
     }

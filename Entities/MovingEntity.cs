@@ -23,6 +23,7 @@ public partial class MovingEntity : Entity
   private float DASH_SPEED = 1500f;
   private float DASH_DECEL = 5500f;
   public float DASH_COOLDOWN = 0.55f;
+  private float SUPER_DASH_SPEED = 4700f;
   public MoveState moveState = MoveState.AIRBORNE;
   public float direction = 0f;
   public int facing = 1;
@@ -31,17 +32,26 @@ public partial class MovingEntity : Entity
   public bool dashReady = true;
   public bool airDash = false;
   public bool attacking = false;
-  public float ATTACK_COOLDOWN = 2f;
+  public float ATTACK_COOLDOWN = 0.5f;
+  public float attackTime = 0f;
+  public Vector2 superDashTarget = Vector2.Zero;
+  public CollisionShape2D dashBox;
+  public Area2D dashDetector;
+  public Vector2 superDashOrigin;
+  public RectangleShape2D collisionShape;
 
   public override void _Ready()
   {
     base._Ready();
     dashTime = DASH_COOLDOWN;
+    dashDetector = (Area2D)FindChild("DashDetector");
+    dashBox = (CollisionShape2D)dashDetector.FindChild("DashCollision");
+    collisionShape = (RectangleShape2D)((CollisionShape2D)((Area2D)FindChild("Detector")).FindChild("Collision")).Shape;
   }
 
   public override void _PhysicsProcess(double delta)
   {
-    if (level.timeout)
+    if (level.timeout && moveState != SUPER_DASHING)
     {
       return;
     }
@@ -66,6 +76,15 @@ public partial class MovingEntity : Entity
       xSpeed = Math.Max(Math.Abs(xSpeed) - MOVE_DECEL * (float)delta, 0f) * xSpeed.SignNotZero();
     }
 
+    if (attacking)
+    {
+      attackTime += (float)delta;
+      if (attackTime > ATTACK_COOLDOWN)
+      {
+        attacking = false;
+      }
+    }
+
     dashTime += (float)delta;
     if (moveState == DASHING)
     {
@@ -81,6 +100,16 @@ public partial class MovingEntity : Entity
       if (dashTime > DASH_DURATION)
       {
         moveState = IsOnFloor() ? GROUNDED : AIRBORNE;
+      }
+    }
+    else if (moveState == SUPER_DASHING)
+    {
+      xSpeed = 0f;
+      ySpeed = 0f;
+      Vector2 result = GlobalPosition.MoveToward(superDashTarget, SUPER_DASH_SPEED * (float)delta) - GlobalPosition;
+      if (MoveAndCollide(result) != null)
+      {
+        EndSuperdash();
       }
     }
     else
@@ -111,33 +140,59 @@ public partial class MovingEntity : Entity
     }
     Velocity = new(xSpeed, ySpeed);
 
-    // dashReady = dashReady || (moveState == GROUNDED && dashTime >= DASH_COOLDOWN);
     dashReady = dashReady || (!airDash && dashTime >= DASH_COOLDOWN);
 
-    MoveAndSlide();
-    if (moveState != DASHING)
+    if (moveState == SUPER_DASHING)
     {
-      if (moveState != JUMPING)
+      if (GlobalPosition.DistanceTo(superDashTarget) < 0.01f)
       {
-        if (IsOnFloor())
+        EndSuperdash();
+      }
+      // else
+      // {
+      //   GD.Print(GlobalPosition.DistanceTo(superDashTarget));
+      // }
+    }
+    else
+    {
+      MoveAndSlide();
+
+      if (moveState != DASHING && moveState != SUPER_DASHING)
+      {
+        if (moveState != JUMPING)
         {
-          // if (moveState == AIRBORNE)
-          if (airDash)
+          if (IsOnFloor())
           {
-            dashReady = true;
-            airDash = false;
+            if (airDash)
+            {
+              dashReady = true;
+              airDash = false;
+            }
+            moveState = GROUNDED;
           }
-          moveState = GROUNDED;
+          else
+          {
+            moveState = AIRBORNE;
+          }
         }
-        else
+        else if (Velocity.Y == 0f)
         {
           moveState = AIRBORNE;
         }
       }
-      else if (Velocity.Y == 0f)
-      {
-        moveState = AIRBORNE;
-      }
     }
+  }
+
+  public void EndSuperdash()
+  {
+    moveState = IsOnFloor() ? GROUNDED : AIRBORNE;
+    var dashShape = new RectangleShape2D
+    {
+      Size = new Vector2((GlobalPosition - superDashOrigin).Length() + collisionShape.Size.X, collisionShape.Size.Y)
+    };
+    dashDetector.GlobalPosition = superDashOrigin;
+    dashBox.Shape = dashShape;
+    dashBox.Position = new Vector2(((GlobalPosition - superDashOrigin).Length()) / 2, 0);
+    dashDetector.LookAt(GlobalPosition);
   }
 }

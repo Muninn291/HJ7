@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://crrahvb4bsipd"]
+[gd_scene load_steps=8 format=3 uid="uid://crrahvb4bsipd"]
 
 [ext_resource type="Script" uid="uid://bn6eukj5ci0ux" path="res://Entities/Player/Player.cs" id="1_3uyv8"]
 [ext_resource type="Texture2D" uid="uid://qdgt6qkrmyr" path="res://Entities/Player/Sprites/ImmerRect.png" id="2_lu8i8"]
@@ -6,6 +6,9 @@
 [ext_resource type="Script" uid="uid://c8a0rargkdu7i" path="res://Entities/Player/Detector.cs" id="4_5c2io"]
 [ext_resource type="Script" uid="uid://3qwe2theut1e" path="res://Entities/Player/AimPointer.cs" id="5_4wf4l"]
 [ext_resource type="Texture2D" uid="uid://dixhfue0xk18h" path="res://Entities/Player/Sprites/AimPointer.png" id="6_01a4e"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4wf4l"]
+size = Vector2(0, 0)
 
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 16
@@ -20,9 +23,20 @@ texture = ExtResource("2_lu8i8")
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Detector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
 script = ExtResource("4_5c2io")
 
-[node name="PlayerCollision" parent="Detector" instance=ExtResource("3_tekja")]
+[node name="Collision" parent="Detector" instance=ExtResource("3_tekja")]
+
+[node name="DashDetector" type="Area2D" parent="."]
+top_level = true
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("4_5c2io")
+
+[node name="DashCollision" type="CollisionShape2D" parent="DashDetector"]
+shape = SubResource("RectangleShape2D_4wf4l")
 
 [node name="AimPointer" type="Node2D" parent="."]
 script = ExtResource("5_4wf4l")

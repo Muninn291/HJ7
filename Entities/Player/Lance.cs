@@ -8,13 +8,13 @@ public partial class Lance : Node2D
 		LookAt(GetGlobalMousePosition());
 
 		AnimationPlayer thrustAnimation = (AnimationPlayer)FindChild("ThrustArea").FindChild("ThrustAnim");
-		thrustAnimation.CurrentAnimationChanged += AnimEnd;
+		thrustAnimation.AnimationFinished += AnimEnd;
 		thrustAnimation.Play("thrust");
 	}
 
-	public void AnimEnd(string name)
+	public void AnimEnd(StringName animName)
 	{
-		if (string.IsNullOrEmpty(name))
+		if (animName == "thrust")
 		{
 			QueueFree();
 		}
