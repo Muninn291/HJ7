@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://coo6g7lshh362"]
+[gd_scene load_steps=8 format=3 uid="uid://coo6g7lshh362"]
 
 [ext_resource type="Script" uid="uid://cplqom4qbpck1" path="res://Entities/Player/Lance.cs" id="1_ihpms"]
+[ext_resource type="Script" uid="uid://dwvfc3ewpl6t4" path="res://Entities/Player/AttackArea.cs" id="2_65iyk"]
 [ext_resource type="Texture2D" uid="uid://cvxt3hne7vslb" path="res://Entities/Player/Sprites/AttackLance.png" id="2_gygrd"]
 
 [sub_resource type="Animation" id="Animation_lub02"]
@@ -55,7 +56,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.2, 0.4),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(40, 0), Vector2(40, 0)]
+"values": [Vector2(0, 0), Vector2(35, 0), Vector2(35, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_x1y6q"]
@@ -65,15 +66,18 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lub02"]
-size = Vector2(57.3781, 20)
+size = Vector2(87, 20)
 
 [node name="Lance" type="Node2D"]
 script = ExtResource("1_ihpms")
 
 [node name="ThrustArea" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 4
+script = ExtResource("2_65iyk")
 
 [node name="Sprite2D" type="Sprite2D" parent="ThrustArea"]
-position = Vector2(24, 0)
+position = Vector2(40, 0)
 texture = ExtResource("2_gygrd")
 
 [node name="ThrustAnim" type="AnimationPlayer" parent="ThrustArea"]
@@ -83,5 +87,5 @@ libraries = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ThrustArea"]
-position = Vector2(23.6891, 0)
+position = Vector2(43.5, 0)
 shape = SubResource("RectangleShape2D_lub02")

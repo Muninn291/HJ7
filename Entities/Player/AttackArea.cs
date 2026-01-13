@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class Detector : Area2D
+public partial class AttackArea : Area2D
 {
   public override void _Ready()
   {
@@ -11,21 +11,15 @@ public partial class Detector : Area2D
 
   public static void OnBodyShapeEntered(Rid bodyRid, Node2D body, long bodyShapeIndex, long localShapeIndex)
   {
-    if (body is Item item)
+    // GD.Print(body.GetType().ToString());
+    if (body is Enemy enemy)
     {
-      item.OnEnter();
-    }
-    else if (body is Enemy enemy)
-    {
-      enemy.level.DecreaseGrains(1000);
+      // GD.Print("I've been HIT");
+      enemy.OnHit();
     }
   }
 
   public static void OnBodyShapeExited(Rid bodyRid, Node2D body, long bodyShapeIndex, long localShapeIndex)
   {
-    if (body is Item item)
-    {
-      item.OnExit();
-    }
   }
 }

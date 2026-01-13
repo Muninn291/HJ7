@@ -39,14 +39,20 @@ public partial class MovingEntity : Entity
   public Area2D dashDetector;
   public Vector2 superDashOrigin;
   public RectangleShape2D collisionShape;
+  public AnimationPlayer anim;
 
   public override void _Ready()
   {
     base._Ready();
     dashTime = DASH_COOLDOWN;
     dashDetector = (Area2D)FindChild("DashDetector");
-    dashBox = (CollisionShape2D)dashDetector.FindChild("DashCollision");
-    collisionShape = (RectangleShape2D)((CollisionShape2D)((Area2D)FindChild("Detector")).FindChild("Collision")).Shape;
+    // if (dashDetector != null)
+    // {
+    dashBox = (CollisionShape2D)dashDetector?.FindChild("DashCollision");
+    // }
+    collisionShape = (RectangleShape2D)((CollisionShape2D)((Area2D)FindChild("Detector"))?.FindChild("Collision"))?.Shape;
+    anim = (AnimationPlayer)FindChild("AnimationPlayer");
+    anim.Play("idle");
   }
 
   public override void _PhysicsProcess(double delta)
@@ -71,7 +77,7 @@ public partial class MovingEntity : Entity
     float xSpeed = Velocity.X;
     float ySpeed = Velocity.Y;
 
-    if (direction == 0f || direction != xSpeed.SignNotZero())
+    if (this is Player && (direction == 0f || direction != xSpeed.SignNotZero()))
     {
       xSpeed = Math.Max(Math.Abs(xSpeed) - MOVE_DECEL * (float)delta, 0f) * xSpeed.SignNotZero();
     }
@@ -114,11 +120,14 @@ public partial class MovingEntity : Entity
     }
     else
     {
-      if (direction != 0f)
+      if (this is Player)
       {
-        facing = (int)direction;
-        xSpeed += direction * MOVE_ACCEL * (float)delta;
-        xSpeed = Math.Min(Math.Abs(xSpeed), MAX_MOVE_SPEED) * xSpeed.SignNotZero();
+        if (direction != 0f)
+        {
+          facing = (int)direction;
+          xSpeed += direction * MOVE_ACCEL * (float)delta;
+          xSpeed = Math.Min(Math.Abs(xSpeed), MAX_MOVE_SPEED) * xSpeed.SignNotZero();
+        }
       }
       if (moveState != JUMPING)
       {

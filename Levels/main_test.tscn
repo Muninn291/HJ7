@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://puk31w112b4r"]
+[gd_scene load_steps=15 format=4 uid="uid://puk31w112b4r"]
 
 [ext_resource type="Script" uid="uid://bdets8vabkarg" path="res://Levels/Level.cs" id="1_1c1ed"]
 [ext_resource type="PackedScene" uid="uid://gn34kw1l4flk" path="res://Levels/terrain.tscn" id="1_w2yg5"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://djfwywjls2e3c" path="res://Entities/Items/reverseGrain.tscn" id="5_iv07e"]
 [ext_resource type="Texture2D" uid="uid://b0vhvdnhe8od3" path="res://Entities/Items/reverse_grain.png" id="6_2m2x5"]
 [ext_resource type="Shader" uid="uid://dht4rpb13pb66" path="res://Levels/timestop.gdshader" id="6_7l73b"]
+[ext_resource type="PackedScene" uid="uid://c2g8l8gc5eatk" path="res://Entities/Enemies/Timemite/timemite.tscn" id="9_1mm2f"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1mm2f"]
 shader = ExtResource("6_7l73b")
@@ -29,7 +30,7 @@ RichTextLabel/font_sizes/normal_font_size = 32
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_1c1ed")
-grains = 10000
+grains = 8000
 
 [node name="UI" type="CanvasLayer" parent="."]
 
@@ -114,9 +115,6 @@ position = Vector2(-253, -83)
 [node name="Grain2" parent="AlwaysColor" instance=ExtResource("3_w2yg5")]
 position = Vector2(325, -174)
 
-[node name="Grain3" parent="AlwaysColor" instance=ExtResource("3_w2yg5")]
-position = Vector2(-89, -15)
-
 [node name="Grain4" parent="AlwaysColor" instance=ExtResource("3_w2yg5")]
 position = Vector2(397, -412)
 
@@ -144,8 +142,14 @@ position = Vector2(1507, -378)
 [node name="Grain6" parent="AlwaysColor" instance=ExtResource("3_w2yg5")]
 position = Vector2(1192, -450)
 
-[node name="Grain7" parent="AlwaysColor" instance=ExtResource("3_w2yg5")]
-position = Vector2(1025, -330)
-
 [node name="Player" parent="AlwaysColor" instance=ExtResource("2_w2yg5")]
-position = Vector2(0, -466)
+position = Vector2(-1, -33)
+
+[node name="Timemite" parent="." instance=ExtResource("9_1mm2f")]
+position = Vector2(-93, -19)
+
+[node name="Timemite2" parent="." instance=ExtResource("9_1mm2f")]
+position = Vector2(590, -19)
+
+[node name="Timemite3" parent="." instance=ExtResource("9_1mm2f")]
+position = Vector2(1482, 110)
