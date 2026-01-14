@@ -46,10 +46,7 @@ public partial class MovingEntity : Entity
     base._Ready();
     dashTime = DASH_COOLDOWN;
     dashDetector = (Area2D)FindChild("DashDetector");
-    // if (dashDetector != null)
-    // {
     dashBox = (CollisionShape2D)dashDetector?.FindChild("DashCollision");
-    // }
     collisionShape = (RectangleShape2D)((CollisionShape2D)((Area2D)FindChild("Detector"))?.FindChild("Collision"))?.Shape;
     anim = (AnimationPlayer)FindChild("AnimationPlayer");
     anim.Play("idle");

@@ -19,7 +19,6 @@ public partial class Enemy : MovingEntity
 
   public void OnHit()
   {
-    GD.Print("I've been HIT!");
     health -= 1;
     if (health <= 0)
     {

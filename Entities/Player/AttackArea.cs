@@ -11,10 +11,8 @@ public partial class AttackArea : Area2D
 
   public static void OnBodyShapeEntered(Rid bodyRid, Node2D body, long bodyShapeIndex, long localShapeIndex)
   {
-    // GD.Print(body.GetType().ToString());
     if (body is Enemy enemy)
     {
-      // GD.Print("I've been HIT");
       enemy.OnHit();
     }
   }

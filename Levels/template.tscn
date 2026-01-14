@@ -1,0 +1,110 @@
+[gd_scene load_steps=12 format=3 uid="uid://cfvlakrrdxtuu"]
+
+[ext_resource type="Script" uid="uid://bdets8vabkarg" path="res://Levels/Level.cs" id="1_wtqwx"]
+[ext_resource type="Shader" uid="uid://dht4rpb13pb66" path="res://Levels/timestop.gdshader" id="2_igp3g"]
+[ext_resource type="Texture2D" uid="uid://kuqk53fkwbwi" path="res://Entities/Items/grain.png" id="3_3qx3l"]
+[ext_resource type="Texture2D" uid="uid://b0vhvdnhe8od3" path="res://Entities/Items/reverse_grain.png" id="4_8h4jd"]
+[ext_resource type="PackedScene" uid="uid://gn34kw1l4flk" path="res://Levels/terrain.tscn" id="5_h8l50"]
+[ext_resource type="PackedScene" uid="uid://crrahvb4bsipd" path="res://Entities/Player/player.tscn" id="8_nph8i"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1mm2f"]
+shader = ExtResource("2_igp3g")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wp7yq"]
+bg_color = Color(0, 0, 0, 0.27451)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w2yg5"]
+bg_color = Color(0.717647, 0.639216, 0, 1)
+
+[sub_resource type="Theme" id="Theme_wp7yq"]
+ProgressBar/styles/background = SubResource("StyleBoxFlat_wp7yq")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_w2yg5")
+
+[sub_resource type="Theme" id="Theme_7enlu"]
+RichTextLabel/font_sizes/normal_font_size = 32
+
+[node name="Main_" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_wtqwx")
+grains = 8000
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="TimeStopFilter" type="ColorRect" parent="UI"]
+visible = false
+material = SubResource("ShaderMaterial_1mm2f")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="UI"]
+offset_left = 21.0
+offset_top = 53.0
+offset_right = 41.0
+offset_bottom = 113.0
+theme = SubResource("Theme_wp7yq")
+value = 50.0
+allow_greater = true
+fill_mode = 3
+show_percentage = false
+
+[node name="GCounter" type="TextureRect" parent="UI/ProgressBar"]
+layout_mode = 0
+offset_left = -6.0
+offset_top = -33.0
+offset_right = 26.0
+offset_bottom = -1.0
+texture = ExtResource("3_3qx3l")
+
+[node name="GCount" type="RichTextLabel" parent="UI/ProgressBar/GCounter"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_7enlu")
+text = "5"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+shortcut_keys_enabled = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RGCounter" type="TextureRect" parent="UI"]
+offset_left = 52.0
+offset_top = 24.0
+offset_right = 84.0
+offset_bottom = 56.0
+texture = ExtResource("4_8h4jd")
+
+[node name="RGCount" type="RichTextLabel" parent="UI/RGCounter"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_7enlu")
+text = "5"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+shortcut_keys_enabled = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Terrain" parent="." instance=ExtResource("5_h8l50")]
+position = Vector2(-56, -13)
+tile_map_data = PackedByteArray(0, 0, 2, 0, 0, 0, 1, 0, 3, 0, 3, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0, 3, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 3, 0, 0, 0)
+
+[node name="AlwaysColor" type="CanvasLayer" parent="."]
+layer = 2
+follow_viewport_enabled = true
+
+[node name="Player" parent="AlwaysColor" instance=ExtResource("8_nph8i")]
+position = Vector2(-1, -33)

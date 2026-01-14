@@ -32,6 +32,18 @@ anchors_preset = 0
 script = ExtResource("1_1c1ed")
 grains = 8000
 
+[node name="Pause" type="CanvasLayer" parent="."]
+process_mode = 2
+layer = 3
+
+[node name="ColorRect" type="ColorRect" parent="Pause"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.184314)
+
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="TimeStopFilter" type="ColorRect" parent="UI"]

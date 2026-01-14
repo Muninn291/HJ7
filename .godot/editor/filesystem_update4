@@ -20,3 +20,9 @@ res://Entities/Items/grain.tscn
 res://Entities/Enemies/Timemite/timemite.tscn
 res://Entities/Enemies/Enemy.cs
 res://Entities/Player/player_collision.tscn
+res://Menu/main_menu.tscn
+res://Menu/Start.cs
+res://Global.cs
+res://Menu/menu.tres
+res://Menu/Quit.cs
+res://Levels/template.tscn

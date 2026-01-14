@@ -1,5 +1,8 @@
 # Godot 4+ specific ignores
 .godot/
+.godot/editor/
+.godot/mono/
 /android/
 .vscode/
 .editorconfig
+data_HJ7_windows_x86_64/

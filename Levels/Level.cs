@@ -82,6 +82,11 @@ public partial class Level : Control
   public void UpdateRGCount()
   {
     reverseGrains = FindChild("AlwaysColor").GetChildren().Count(c => c is ReverseGrain rg && !rg.collected);
+    if (reverseGrains <= 0)
+    {
+      GD.Print("Victory!");
+      
+    }
     rgCount.Text = $"{reverseGrains}";
   }
 }
