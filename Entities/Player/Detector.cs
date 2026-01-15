@@ -17,7 +17,14 @@ public partial class Detector : Area2D
     }
     else if (body is Enemy enemy)
     {
-      enemy.level.DecreaseGrains(1000);
+      if (enemy.level.grains > 0)
+      {
+        enemy.level.DecreaseGrains(1000);
+      }
+      else
+      {
+        enemy.level.pause.ShowDefeat();
+      }
     }
   }
 

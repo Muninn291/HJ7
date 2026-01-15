@@ -1,0 +1,90 @@
+[gd_scene load_steps=9 format=3 uid="uid://dtic8fmbxse76"]
+
+[ext_resource type="Shader" uid="uid://dht4rpb13pb66" path="res://Levels/timestop.gdshader" id="1_4unax"]
+[ext_resource type="Texture2D" uid="uid://kuqk53fkwbwi" path="res://Entities/Items/grain.png" id="2_jew6a"]
+[ext_resource type="Texture2D" uid="uid://b0vhvdnhe8od3" path="res://Entities/Items/reverse_grain.png" id="3_w36xk"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1mm2f"]
+shader = ExtResource("1_4unax")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wp7yq"]
+bg_color = Color(0, 0, 0, 0.27451)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w2yg5"]
+bg_color = Color(0.717647, 0.639216, 0, 1)
+
+[sub_resource type="Theme" id="Theme_wp7yq"]
+ProgressBar/styles/background = SubResource("StyleBoxFlat_wp7yq")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_w2yg5")
+
+[sub_resource type="Theme" id="Theme_7enlu"]
+RichTextLabel/font_sizes/normal_font_size = 32
+
+[node name="UI" type="CanvasLayer"]
+
+[node name="TimeStopFilter" type="ColorRect" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_1mm2f")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+offset_left = 21.0
+offset_top = 53.0
+offset_right = 41.0
+offset_bottom = 113.0
+theme = SubResource("Theme_wp7yq")
+value = 50.0
+allow_greater = true
+fill_mode = 3
+show_percentage = false
+
+[node name="GCounter" type="TextureRect" parent="ProgressBar"]
+layout_mode = 0
+offset_left = -6.0
+offset_top = -33.0
+offset_right = 26.0
+offset_bottom = -1.0
+texture = ExtResource("2_jew6a")
+
+[node name="GCount" type="RichTextLabel" parent="ProgressBar/GCounter"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_7enlu")
+text = "5"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+shortcut_keys_enabled = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RGCounter" type="TextureRect" parent="."]
+offset_left = 52.0
+offset_top = 24.0
+offset_right = 84.0
+offset_bottom = 56.0
+texture = ExtResource("3_w36xk")
+
+[node name="RGCount" type="RichTextLabel" parent="RGCounter"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_7enlu")
+text = "5"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+shortcut_keys_enabled = false
+horizontal_alignment = 1
+vertical_alignment = 1

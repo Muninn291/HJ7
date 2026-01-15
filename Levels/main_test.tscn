@@ -1,30 +1,13 @@
-[gd_scene load_steps=15 format=4 uid="uid://puk31w112b4r"]
+[gd_scene load_steps=9 format=4 uid="uid://puk31w112b4r"]
 
 [ext_resource type="Script" uid="uid://bdets8vabkarg" path="res://Levels/Level.cs" id="1_1c1ed"]
 [ext_resource type="PackedScene" uid="uid://gn34kw1l4flk" path="res://Levels/terrain.tscn" id="1_w2yg5"]
+[ext_resource type="PackedScene" uid="uid://csddvxpb27lfo" path="res://Levels/pause.tscn" id="2_7l73b"]
 [ext_resource type="PackedScene" uid="uid://crrahvb4bsipd" path="res://Entities/Player/player.tscn" id="2_w2yg5"]
+[ext_resource type="PackedScene" uid="uid://dtic8fmbxse76" path="res://Levels/ui.tscn" id="3_1mm2f"]
 [ext_resource type="PackedScene" uid="uid://5h0k0v7g0sro" path="res://Entities/Items/grain.tscn" id="3_w2yg5"]
-[ext_resource type="Texture2D" uid="uid://kuqk53fkwbwi" path="res://Entities/Items/grain.png" id="3_wp7yq"]
 [ext_resource type="PackedScene" uid="uid://djfwywjls2e3c" path="res://Entities/Items/reverseGrain.tscn" id="5_iv07e"]
-[ext_resource type="Texture2D" uid="uid://b0vhvdnhe8od3" path="res://Entities/Items/reverse_grain.png" id="6_2m2x5"]
-[ext_resource type="Shader" uid="uid://dht4rpb13pb66" path="res://Levels/timestop.gdshader" id="6_7l73b"]
 [ext_resource type="PackedScene" uid="uid://c2g8l8gc5eatk" path="res://Entities/Enemies/Timemite/timemite.tscn" id="9_1mm2f"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_1mm2f"]
-shader = ExtResource("6_7l73b")
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wp7yq"]
-bg_color = Color(0, 0, 0, 0.27451)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w2yg5"]
-bg_color = Color(0.717647, 0.639216, 0, 1)
-
-[sub_resource type="Theme" id="Theme_wp7yq"]
-ProgressBar/styles/background = SubResource("StyleBoxFlat_wp7yq")
-ProgressBar/styles/fill = SubResource("StyleBoxFlat_w2yg5")
-
-[sub_resource type="Theme" id="Theme_7enlu"]
-RichTextLabel/font_sizes/normal_font_size = 32
 
 [node name="Main_Test" type="Control"]
 layout_mode = 3
@@ -32,86 +15,9 @@ anchors_preset = 0
 script = ExtResource("1_1c1ed")
 grains = 8000
 
-[node name="Pause" type="CanvasLayer" parent="."]
-process_mode = 2
-layer = 3
+[node name="Pause" parent="." instance=ExtResource("2_7l73b")]
 
-[node name="ColorRect" type="ColorRect" parent="Pause"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 0.184314)
-
-[node name="UI" type="CanvasLayer" parent="."]
-
-[node name="TimeStopFilter" type="ColorRect" parent="UI"]
-visible = false
-material = SubResource("ShaderMaterial_1mm2f")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="ProgressBar" type="ProgressBar" parent="UI"]
-offset_left = 21.0
-offset_top = 53.0
-offset_right = 41.0
-offset_bottom = 113.0
-theme = SubResource("Theme_wp7yq")
-value = 50.0
-allow_greater = true
-fill_mode = 3
-show_percentage = false
-
-[node name="GCounter" type="TextureRect" parent="UI/ProgressBar"]
-layout_mode = 0
-offset_left = -6.0
-offset_top = -33.0
-offset_right = 26.0
-offset_bottom = -1.0
-texture = ExtResource("3_wp7yq")
-
-[node name="GCount" type="RichTextLabel" parent="UI/ProgressBar/GCounter"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = SubResource("Theme_7enlu")
-text = "5"
-fit_content = true
-scroll_active = false
-autowrap_mode = 0
-shortcut_keys_enabled = false
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="RGCounter" type="TextureRect" parent="UI"]
-offset_left = 52.0
-offset_top = 24.0
-offset_right = 84.0
-offset_bottom = 56.0
-texture = ExtResource("6_2m2x5")
-
-[node name="RGCount" type="RichTextLabel" parent="UI/RGCounter"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = SubResource("Theme_7enlu")
-text = "5"
-fit_content = true
-scroll_active = false
-autowrap_mode = 0
-shortcut_keys_enabled = false
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="UI" parent="." instance=ExtResource("3_1mm2f")]
 
 [node name="Terrain" parent="." instance=ExtResource("1_w2yg5")]
 position = Vector2(-56, -13)

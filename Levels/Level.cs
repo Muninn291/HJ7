@@ -23,6 +23,8 @@ public partial class Level : Control
     }
   }
   public ColorRect timeStopFilter;
+  public Pause pause;
+  public bool overtime = false;
 
   public override void _Ready()
   {
@@ -34,6 +36,7 @@ public partial class Level : Control
     gCount = (RichTextLabel)FindChild("UI").FindChild("ProgressBar").FindChild("GCounter").FindChild("GCount");
     rgCount = (RichTextLabel)FindChild("UI").FindChild("RGCounter").FindChild("RGCount");
     timeStopFilter = (ColorRect)FindChild("UI").FindChild("TimeStopFilter");
+    pause = (Pause)FindChild("Pause");
     foreach (Entity entity in GetChildren().Where(c => c is Entity).Cast<Entity>())
     {
       entity.level = this;
@@ -60,9 +63,10 @@ public partial class Level : Control
   {
     grains = Math.Max(grains - difference, 0);
     UpdateGCount();
-    if (grains == 0 && Timeout)
+    if (grains == 0)
     {
       Timeout = false;
+      overtime = true;
     }
   }
 
@@ -84,8 +88,7 @@ public partial class Level : Control
     reverseGrains = FindChild("AlwaysColor").GetChildren().Count(c => c is ReverseGrain rg && !rg.collected);
     if (reverseGrains <= 0)
     {
-      GD.Print("Victory!");
-      
+      pause.ShowVictory();
     }
     rgCount.Text = $"{reverseGrains}";
   }

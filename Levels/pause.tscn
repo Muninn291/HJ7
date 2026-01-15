@@ -1,0 +1,188 @@
+[gd_scene load_steps=6 format=3 uid="uid://csddvxpb27lfo"]
+
+[ext_resource type="Script" uid="uid://ci0dqi0dr521q" path="res://Levels/Pause.cs" id="1_q5ror"]
+[ext_resource type="Theme" uid="uid://cyj0kijm8ia0x" path="res://Menu/menu.tres" id="2_s22c2"]
+[ext_resource type="Script" uid="uid://ttbep6wdr5ri" path="res://Menu/Resume.cs" id="3_2em1d"]
+[ext_resource type="Script" uid="uid://ckpea2rjr86hw" path="res://Menu/MainMenu.cs" id="4_2em1d"]
+[ext_resource type="Script" uid="uid://cm5tpm4kep0co" path="res://Menu/Retry.cs" id="5_2uu1a"]
+
+[node name="Pause" type="CanvasLayer"]
+process_mode = 3
+layer = 3
+script = ExtResource("1_q5ror")
+
+[node name="PauseMenu" type="ColorRect" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.184314)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PauseMenu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.2
+anchor_right = 0.5
+anchor_bottom = 0.2
+offset_left = -0.5
+offset_top = -33.5
+offset_right = 0.5
+offset_bottom = 33.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_s22c2")
+text = "PAUSED"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseMenu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.7
+anchor_right = 0.5
+anchor_bottom = 0.7
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_s22c2")
+
+[node name="Resume" type="Button" parent="PauseMenu/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_s22c2")
+text = "RESUME
+"
+script = ExtResource("3_2em1d")
+
+[node name="MainMenu" type="Button" parent="PauseMenu/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_s22c2")
+text = "MAIN MENU"
+script = ExtResource("4_2em1d")
+
+[node name="Victory" type="ColorRect" parent="."]
+process_mode = 2
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.184314)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Victory"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.2
+anchor_right = 0.5
+anchor_bottom = 0.2
+offset_left = -103.0
+offset_top = -33.0
+offset_right = 102.0
+offset_bottom = 34.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_s22c2")
+text = "VICTORY"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Victory"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.7
+anchor_right = 0.5
+anchor_bottom = 0.7
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_s22c2")
+
+[node name="NextLevel" type="Button" parent="Victory/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme = ExtResource("2_s22c2")
+text = "NEXT LEVEL
+"
+
+[node name="MainMenu" type="Button" parent="Victory/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_s22c2")
+text = "MAIN MENU"
+script = ExtResource("4_2em1d")
+
+[node name="Defeat" type="ColorRect" parent="."]
+process_mode = 2
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.184314)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Defeat"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.2
+anchor_right = 0.5
+anchor_bottom = 0.2
+offset_left = -103.0
+offset_top = -33.0
+offset_right = 102.0
+offset_bottom = 34.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_s22c2")
+text = "GAME OVER"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Defeat"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.7
+anchor_right = 0.5
+anchor_bottom = 0.7
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_s22c2")
+
+[node name="Retry" type="Button" parent="Defeat/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_s22c2")
+text = "RETRY
+"
+script = ExtResource("5_2uu1a")
+
+[node name="MainMenu" type="Button" parent="Defeat/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_s22c2")
+text = "MAIN MENU"
+script = ExtResource("4_2em1d")

@@ -75,7 +75,7 @@ script = ExtResource("4_5c2io")
 [node name="DashDetector" type="Area2D" parent="."]
 top_level = true
 collision_layer = 0
-collision_mask = 6
+collision_mask = 2
 script = ExtResource("4_5c2io")
 
 [node name="DashCollision" type="CollisionShape2D" parent="DashDetector"]

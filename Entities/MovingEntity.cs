@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Threading;
 using static MoveState;
 
 public partial class MovingEntity : Entity
@@ -196,5 +197,19 @@ public partial class MovingEntity : Entity
     dashBox.Shape = dashShape;
     dashBox.Position = new Vector2(((GlobalPosition - superDashOrigin).Length()) / 2, 0);
     dashDetector.LookAt(GlobalPosition);
+    Thread fs = new(FinishSuperdash);
+    fs.Start();
+  }
+
+  public void FinishSuperdash()
+  {
+    Thread.Sleep(100);
+    Callable.From(() =>
+    {
+      dashBox.Shape = new RectangleShape2D
+      {
+        Size = Vector2.Zero
+      };
+    }).CallDeferred();
   }
 }

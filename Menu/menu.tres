@@ -2,4 +2,6 @@
 
 [resource]
 Button/font_sizes/font_size = 48
+RichTextLabel/constants/outline_size = 4
+RichTextLabel/font_sizes/normal_font_size = 64
 VBoxContainer/constants/separation = 13

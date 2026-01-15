@@ -7,7 +7,7 @@ public partial class Start : Button
   public override void _Pressed()
   {
     base._Pressed();
-    Node level = GD.Load<PackedScene>("res://Levels/main_test.tscn").Instantiate();
-    ChangeMainScene(level, false);
+    Node level = GD.Load<PackedScene>("res://Levels/Main_Level1.tscn").Instantiate();
+    ChangeMainScene(level, true);
   }
 }

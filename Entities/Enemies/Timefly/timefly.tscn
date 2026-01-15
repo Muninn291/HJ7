@@ -1,0 +1,60 @@
+[gd_scene load_steps=7 format=3 uid="uid://n2kbcdr7dv75"]
+
+[ext_resource type="Script" uid="uid://c3xs64ypq0et3" path="res://Entities/Enemies/Timemite/Timemite.cs" id="1_xr1pt"]
+[ext_resource type="Texture2D" uid="uid://dkshkfkl25uul" path="res://Entities/Enemies/Timefly/Sprites/timefly.png" id="2_j2ry2"]
+[ext_resource type="PackedScene" path="res://Entities/Enemies/Timefly/timefly_col.tscn" id="3_7jxds"]
+
+[sub_resource type="Animation" id="Animation_ad8dd"]
+length = 0.001
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_cnhkr"]
+resource_name = "idle"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2w6il"]
+_data = {
+&"RESET": SubResource("Animation_ad8dd"),
+&"idle": SubResource("Animation_cnhkr")
+}
+
+[node name="Timefly" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 16
+script = ExtResource("1_xr1pt")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_j2ry2")
+vframes = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_2w6il")
+}
+
+[node name="TimeflyCol" parent="." instance=ExtResource("3_7jxds")]

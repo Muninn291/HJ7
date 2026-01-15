@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://c8bhamym6dotw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1mm2f"]
+size = Vector2(38, 32)
+
+[node name="TimemiteCol" type="CollisionShape2D"]
+shape = SubResource("RectangleShape2D_1mm2f")
